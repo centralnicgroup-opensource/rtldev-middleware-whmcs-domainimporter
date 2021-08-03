@@ -63,13 +63,13 @@ function cnicdomainimport_output($vars)
     $smarty->caching = false;
     $smarty->setCompileDir($GLOBALS['templates_compiledir']);
     $smarty->setTemplateDir(implode(DIRECTORY_SEPARATOR, [ROOTDIR, "modules", "addons", "cnicdomainimport", "templates", "admin"]));
-    
+
     // load list of registrars - always necessary
     $registrar = new \WHMCS\Module\Registrar();
     $activeregs = [];
-    foreach($registrar->getList() as $reg) {
+    foreach ($registrar->getList() as $reg) {
         if (preg_match(base64_decode($r), $reg)) {
-            if ($registrar->load($reg)){
+            if ($registrar->load($reg)) {
                 if ($registrar->isActivated()) {
                     $activeregs[$reg] = $registrar->getDisplayName();
                 }
@@ -88,7 +88,7 @@ function cnicdomainimport_output($vars)
     $dispatcher = new AdminDispatcher();
     echo $dispatcher->dispatch(
         $_REQUEST['action'],
-        $vars, 
+        $vars,
         $smarty
     );
 }

@@ -2,7 +2,7 @@
 
 namespace WHMCS\Module\Addon\CnicDomainImport\Admin;
 
-use \WHMCS\Config\Setting as Setting;
+use WHMCS\Config\Setting as Setting;
 use Illuminate\Database\Capsule\Manager as DB;
 
 if (defined("ROOTDIR")) {
@@ -114,7 +114,7 @@ class Helper
             "currency" => $currencyid,
             "language" => "english"
         ];
-        foreach($fmap as $ckey => $dbkey) {
+        foreach ($fmap as $ckey => $dbkey) {
             $request[$dbkey] = $contact[$ckey];
         }
         if (empty($registrant["postcode"])) {
@@ -124,7 +124,7 @@ class Helper
         $request["postcode"] = preg_replace("/[^0-9a-zA-Z ]/", "", $request["postcode"]);
         $request["country"] = strtoupper($request["country"]);
         $request["tax_id"] = $taxid;
-    
+
         $r = localAPI("AddClient", $request);
 
         if ($r["result"] === "success") {
@@ -174,7 +174,7 @@ class Helper
                 "allowretry" => true
             ];
         }
-        
+
         if ($isPremium) {
             $currErr = [
                 "success" => false,
@@ -184,7 +184,7 @@ class Helper
                 ],
                 "allowretry" => true
             ];
-            if (!isset($premiumpricing["CurrencyCode"])){
+            if (!isset($premiumpricing["CurrencyCode"])) {
                 return $currErr;
             }
             $registrarCurrencyId = DB::table("tblcurrencies")->where("code", "=", $premiumpricing["CurrencyCode"])->value("id");
@@ -193,7 +193,7 @@ class Helper
                 return $currErr;
             }
         }
-        
+
         // add prices for addons, taxes, etc.
         $pricing = Helper::addFeesTaxes($domain, $client, $pricing);
 
@@ -229,7 +229,7 @@ class Helper
                 "status" => "Active",
                 "nextduedate" => $ndd,
                 "nextinvoicedate" => $nid,
-                "paymentmethod" => $gateway,            
+                "paymentmethod" => $gateway,
                 "dnsmanagement" => (int) $domain->getDnsManagementStatus(),
                 "emailforwarding" => (int) $domain->getEmailForwardingStatus(),
                 "idprotection" => (int) $domain->getIdProtectionStatus(),
@@ -237,7 +237,7 @@ class Helper
                 "donotrenew" => 0,
                 "synced" => 0
             ]);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return [
                 "success" => false,
                 "msgid" => "domaincreateerror",
@@ -282,7 +282,7 @@ class Helper
         // returned by GetDomainInformation
         $addflds = $domain->registrarData["domainfields"];
         $addflds->saveToDatabase($id);
-        
+
         return [
             "success" => true,
             "msgid" => "ok"
@@ -342,7 +342,7 @@ class Helper
             $typeprice = round($typeprice / $excltaxrate, 2);
             $renewprice = round($renewprice / $excltaxrate, 2);
         }
-        
+
         return [
             "period" => 1,
             "register" => $typeprice,
@@ -404,7 +404,7 @@ class Helper
             $registrar . "_CheckAvailability",
             $registrar . "_GetContactDetails"
         ];
-        foreach($fns as $fn) {
+        foreach ($fns as $fn) {
             if (!function_exists($fn)) {
                 return [
                     "success" => false,
@@ -412,25 +412,25 @@ class Helper
                 ];
             }
         }
-       
+
         // build params
         $params = $reg->getSettings();
         $params["domain"] = $domainidn;
         list($params["sld"], $params["tld"]) = explode(".", $domainidn, 2);
         $params["registrar"] = $registrar;
         $params["status"] = "Active";
-        
+
         // domain status
         try {
             $fn = $registrar . "_GetDomainInformation";
             $domainObj = $fn($params);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return [
                 "success" => false,
                 "msgid" => "domainnotfound"
             ];
         }
-        if (!property_exists($domainObj, 'registrarData')){
+        if (!property_exists($domainObj, 'registrarData')) {
             return [
                 "success" => false,
                 "msgid" => "registrarnotsupported"
@@ -438,7 +438,7 @@ class Helper
         }
         // TODO add fields data Notice (validate vatid, additional fields after import)
         // orgs without vatid for example
-        
+
         // no direct client import
         if (is_null($client)) {
             $fn = $registrar . "_GetContactDetails";
@@ -476,7 +476,7 @@ class Helper
         // Premium Domains not activated and configured in WHMCS
         $addData = $domainObj->registrarData;
         // get premium domain data
-        $isPremium = $addData["is_premium"];        
+        $isPremium = $addData["is_premium"];
         $premiumpricing = [];
         if ($isPremium) {
             $fn = $registrar . "_GetPremiumPrice";

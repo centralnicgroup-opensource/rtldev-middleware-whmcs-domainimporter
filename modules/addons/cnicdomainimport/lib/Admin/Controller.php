@@ -31,7 +31,7 @@ class Controller
                 $currencies[$d["code"]] = $d;
             }
         }
-        
+
         // assign vars to smarty
         $smarty->assign('gateways', $gateways);
         $smarty->assign('gateway_selected', [ $_REQUEST["gateway"] => " selected" ]);
@@ -134,7 +134,7 @@ class Controller
             $result["msg"] = \Lang::trans($result["msgid"]);
         }
         if (isset($result["msgdata"])) {
-            foreach($result["msgdata"] as $key => $val) {
+            foreach ($result["msgdata"] as $key => $val) {
                 $result["msg"] = str_replace(":" . $key, $val, $result["msg"]);
             }
         }
