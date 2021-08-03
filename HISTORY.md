@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.1.0...v1.2.0) (2021-08-03)
+
+
+### Features
+
+* **premium domains:** display them with a star ([cac9ac4](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/cac9ac42b12000fd1d69f84c00054a9914cafcac))
+
 # [1.1.0](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.0.2...v1.1.0) (2021-08-03)
 
 
