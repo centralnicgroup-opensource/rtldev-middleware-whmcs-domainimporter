@@ -1,0 +1,1 @@
+{$_lang['domainlistfetcherror']}: {include file="error.tpl"}

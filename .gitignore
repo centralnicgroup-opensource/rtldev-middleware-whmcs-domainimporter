@@ -1,0 +1,15 @@
+# PHPUnit
+phpunit.xml
+.phpunit.result.cache
+
+# Composer
+composer.phar
+composer.lock
+**/vendor/*
+
+# pkg
+pkg
+
+# npm
+node_modules
+package-lock.json

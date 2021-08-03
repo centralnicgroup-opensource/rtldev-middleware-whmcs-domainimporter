@@ -1,0 +1,1 @@
+<span class="label label-success resultmsg">{$msg}</span>

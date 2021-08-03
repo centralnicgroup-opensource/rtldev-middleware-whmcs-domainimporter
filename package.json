@@ -1,0 +1,56 @@
+{
+  "name": "whmcs-import",
+  "description": "WHMCS Domain Import Addon",
+  "version": "0.0.0-development",
+  "private": true,
+  "author": {
+    "name": "Kai Schwarz",
+    "email": "kschwarz@hexonet.net"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.13.4"
+  },
+  "homepage": "https://github.com/centralnic-reseller/whmcs-import",
+  "repository": "github:centralnic-reseller/whmcs-import",
+  "bugs": "https://github.com/centralnic-reseller/whmcs-import/issues",
+  "maintainers": [
+    {
+      "name": "Kai Schwarz",
+      "url": "https://github.com/papakai"
+    }
+  ],
+  "keywords": [
+    "whmcs",
+    "web host automation platform",
+    "import module",
+    "hexonet",
+    "ispapi",
+    "rrpproxy",
+    "centralnic",
+    "domain",
+    "isp",
+    "ssl",
+    "cert",
+    "dns",
+    "backorder",
+    "premium",
+    "preregistration",
+    "registration",
+    "application"
+  ],
+  "devDependencies": {
+    "semantic-release": "^17.4.4",
+    "@hexonet/semantic-release-github-whmcs-config": "^1.4.1",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-gzip": "^1.4.2",
+    "gulp-zip": "^5.0.2"
+  },
+  "scripts": {
+    "phpCompatibility": "./scripts/phpcompatibility.sh",
+    "codeFix": "phpcbf -q --standard=PSR12 --extensions=php --ignore=node_modules,vendor,templates_c .",
+    "codeCheck": "phpcs -q -n --colors --standard=PSR12 --extensions=php --ignore=node_modules,vendor,templates_c ."
+  }
+}

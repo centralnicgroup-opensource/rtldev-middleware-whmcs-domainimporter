@@ -1,0 +1,33 @@
+{
+  "schema": "1.0",
+  "type": "whmcs-addons",
+  "name": "cnicdomainimport",
+  "license": "MIT",
+  "category": "digitalservices",
+  "description": {
+    "name": "CNIC Domain Import Addon v1.0.0",
+    "tagline": "Import your existing domain portfolio to WHMCS",
+    "long": "",
+    "features": [
+      "Import single domains",
+      "Bulk Import",
+      "Automatic Create Client Accounts based on Registrant Data",
+      "Import to given Client Account"
+    ]
+  },
+  "logo": {
+    "filename": "logo.png"
+  },
+  "support": {
+    "homepage": "https:\/\/www.hexonet.net\/",
+    "learn_more": "https:\/\/github.com\/centralnic-reseller\/whmcs-import\/blob\/master\/README.md",
+    "support_url": "https:\/\/github.com\/centralnic-reseller\/whmcs-import\/wiki\/Contact-Us",
+    "docs_url": "https:\/\/github.com\/centralnic-reseller\/whmcs-import\/wiki\/Usage-Guide"
+  },
+  "authors": [
+    {
+      "name": "HEXONET",
+      "homepage": "https:\/\/www.hexonet.net\/"
+    }
+  ]
+}
