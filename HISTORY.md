@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.0.1...v1.0.2) (2021-08-03)
+
+
+### Bug Fixes
+
+* **module label:** updated ([3718f8d](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/3718f8d4e16e641472842350a2594ddad27d4488))
+
 ## [1.0.1](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.0.0...v1.0.1) (2021-08-03)
 
 
