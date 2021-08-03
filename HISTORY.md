@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.0.0...v1.0.1) (2021-08-03)
+
+
+### Bug Fixes
+
+* **gulp:** fixed archive file name ([4e8f62b](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/4e8f62b65db1a9e157aa14e461f7fb6c10a0ce3f))
+
 # 1.0.0 (2021-08-03)
 
 
