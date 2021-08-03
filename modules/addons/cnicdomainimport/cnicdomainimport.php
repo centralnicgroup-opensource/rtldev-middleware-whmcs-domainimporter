@@ -35,7 +35,7 @@ function cnicdomainimport_config()
 
     return [
         // Display name for your module
-        "name" => "CNIC Domain Import",
+        "name" => "CNIC Domain Importer",
         // Description displayed within the admin interface
         "description" => "This module allows to import existing domains.",
         // Module author name
