@@ -287,7 +287,8 @@ class Helper
         return [
             "success" => true,
             "msgid" => "ok",
-            "hasTrustee" => $isTrusteeUsed
+            "hasTrustee" => $isTrusteeUsed,
+            "isPremium" => $isPremium
         ];
     }
 

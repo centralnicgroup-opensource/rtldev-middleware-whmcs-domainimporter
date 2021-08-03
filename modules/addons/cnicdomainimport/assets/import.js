@@ -26,7 +26,9 @@ $(document).ready(() => {
 
     const showResultContinue = (res, idnconv, isretry) => {
         // output last import result
-        console.dir(res);
+        if (res.isPremium){
+            $(`tr[data-pc='${idnconv.PC}'] td.domain`).append('<sup>✭</sup>');
+        }
         if (res.success) {
             $(`tr[data-pc='${idnconv.PC}'] td.result`).html(
                 `<span class="label label-success" role="alert">${res.msg}</span>`
@@ -100,7 +102,7 @@ $(document).ready(() => {
             $("#inprogress").html(`${translate("status.importing")} <b>${result.IDN}</b> ...`);
             $("#importresults").append(`
                 <tr data-idn="${result.IDN}" data-pc="${result.PC}">
-                    <td>${result.IDN}</td>
+                    <td class="domain">${result.IDN}</td>
                     <td>${(result.IDN !== result.PC) ? `<small>${result.PC}</small>` : ''}</td>
                     <td class="result"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></td>
                     <td class="action"></td>
