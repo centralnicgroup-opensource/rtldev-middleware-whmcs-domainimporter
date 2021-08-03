@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.0.2...v1.1.0) (2021-08-03)
+
+
+### Features
+
+* **local presence service:** display imported domains with active local presence service ([e5a9fc7](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/e5a9fc75d07b2efac7bbe705bb19a0b49d0c84a5))
+
 ## [1.0.2](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.0.1...v1.0.2) (2021-08-03)
 
 
