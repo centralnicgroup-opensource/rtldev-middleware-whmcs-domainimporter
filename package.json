@@ -1,5 +1,5 @@
 {
-  "name": "whmcs-import",
+  "name": "whmcs-domainimporter",
   "description": "WHMCS Domain Import Addon",
   "version": "0.0.0-development",
   "private": true,
@@ -12,9 +12,9 @@
     "node": ">=12.0.0",
     "npm": ">=6.13.4"
   },
-  "homepage": "https://github.com/centralnic-reseller/whmcs-import",
-  "repository": "github:centralnic-reseller/whmcs-import",
-  "bugs": "https://github.com/centralnic-reseller/whmcs-import/issues",
+  "homepage": "https://github.com/centralnic-reseller/whmcs-domainimporter",
+  "repository": "github:centralnic-reseller/whmcs-domainimporter",
+  "bugs": "https://github.com/centralnic-reseller/whmcs-domainimporter/issues",
   "maintainers": [
     {
       "name": "Kai Schwarz",

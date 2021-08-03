@@ -20,9 +20,9 @@
   },
   "support": {
     "homepage": "https:\/\/www.hexonet.net\/",
-    "learn_more": "https:\/\/github.com\/centralnic-reseller\/whmcs-import\/blob\/master\/README.md",
-    "support_url": "https:\/\/github.com\/centralnic-reseller\/whmcs-import\/wiki\/Contact-Us",
-    "docs_url": "https:\/\/github.com\/centralnic-reseller\/whmcs-import\/wiki\/Usage-Guide"
+    "learn_more": "https:\/\/github.com\/centralnic-reseller\/whmcs-domainimporter\/blob\/master\/README.md",
+    "support_url": "https:\/\/github.com\/centralnic-reseller\/whmcs-domainimporter\/wiki\/Contact-Us",
+    "docs_url": "https:\/\/github.com\/centralnic-reseller\/whmcs-domainimporter\/wiki\/Usage-Guide"
   },
   "authors": [
     {

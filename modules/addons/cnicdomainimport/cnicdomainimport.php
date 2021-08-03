@@ -5,10 +5,10 @@
  *
  * This Addon allows to import existing Domains from any CentralNic Brand's System.
  *
- * @see https://github.com/centralnic-reseller/whmcs-import/wiki/
+ * @see https://github.com/centralnic-reseller/whmcs-domainimporter/wiki/
  *
  * @copyright Copyright (c) Kai Schwarz, CentralNic Group PLC, 2021
- * @license https://github.com/centralnic-reseller/whmcs-import/blob/master/LICENSE/ MIT License
+ * @license https://github.com/centralnic-reseller/whmcs-domainimporter/blob/master/LICENSE/ MIT License
  */
 
 use WHMCS\Module\Addon\CnicDomainImport\Admin\AdminDispatcher;
