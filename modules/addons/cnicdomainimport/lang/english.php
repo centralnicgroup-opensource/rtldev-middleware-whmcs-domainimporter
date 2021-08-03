@@ -27,6 +27,7 @@ $_ADDONLANG['registrantcreateerrornoemail'] = "Registrant has no Email Address a
 $_ADDONLANG['currencynotdefinedforpremium'] = "Currency not defined: :currencycode";
 $_ADDONLANG['domainnotfound'] = "Domain not found.";
 $_ADDONLANG['registrarnotsupported'] = "Registrar not supported";
+$_ADDONLANG['trusteeservice'] = "Local Presence Service";
 
 // labels
 $_ADDONLANG['label.registrar'] = "from Registrar";

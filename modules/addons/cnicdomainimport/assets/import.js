@@ -26,11 +26,24 @@ $(document).ready(() => {
 
     const showResultContinue = (res, idnconv, isretry) => {
         // output last import result
-        $(`tr[data-pc='${idnconv.PC}'] td.result`).html(`<span class="label label-${res.success ? 'success' : 'danger'}" role = "alert">${res.msg}</span>`);
-        if (!res.success && res.allowretry) {
-            $(`tr[data-pc='${idnconv.PC}'] td.action`).html(`<button type="button" class="bttn bttn-primary bttn-sm retryimport">${translate("bttn.retryimport")}</button>`);
-            $(`tr[data-pc='${idnconv.PC}'] button.retryimport`).on('click', retryImport);
+        console.dir(res);
+        if (res.success) {
+            $(`tr[data-pc='${idnconv.PC}'] td.result`).html(
+                `<span class="label label-success" role="alert">${res.msg}</span>`
+            );
+            if (res.hasTrustee) {
+                $(`tr[data-pc='${idnconv.PC}'] td.result`).append(
+                    `&nbsp;<span class="label label-warning" role="alert">${translate("trusteeservice")}</span>`
+                );
+            }
+        } else {
+            $(`tr[data-pc='${idnconv.PC}'] td.result`).html(`<span class="label label-danger" role="alert">${res.msg}</span>`);
+            if (res.allowretry) {
+                $(`tr[data-pc='${idnconv.PC}'] td.action`).html(`<button type="button" class="bttn bttn-primary bttn-sm retryimport">${translate("bttn.retryimport")}</button>`);
+                $(`tr[data-pc='${idnconv.PC}'] button.retryimport`).on('click', retryImport);
+            }
         }
+        
 
         // update progress bar
         if (!isretry) {

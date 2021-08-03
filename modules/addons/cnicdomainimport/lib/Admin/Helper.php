@@ -163,9 +163,10 @@ class Helper
      * @param array $pricing tld pricing
      * @param bool $isPremium flag if the domain is premium or not
      * @param array $premiumpricing premium pricing details
+     * @param bool $isTrusteeUsed flag if the domain has an active local presence service
      * @return array
      */
-    public static function createDomain($domain, $registrar, $clientdetails, $gateway, $pricing, $isPremium, $premiumpricing)
+    public static function createDomain($domain, $registrar, $clientdetails, $gateway, $pricing, $isPremium, $premiumpricing, $isTrusteeUsed)
     {
         if (!isset($pricing["renew"][1])) {
             return [
@@ -285,7 +286,8 @@ class Helper
 
         return [
             "success" => true,
-            "msgid" => "ok"
+            "msgid" => "ok",
+            "hasTrustee" => $isTrusteeUsed
         ];
     }
 
@@ -475,8 +477,10 @@ class Helper
         // check if this is a premium domain, but having
         // Premium Domains not activated and configured in WHMCS
         $addData = $domainObj->registrarData;
+        // active trustee service
+        $isTrusteeUsed = $addData["isTrusteeUsed"];
         // get premium domain data
-        $isPremium = $addData["is_premium"];
+        $isPremium = $addData["isPremium"];
         $premiumpricing = [];
         if ($isPremium) {
             $fn = $registrar . "_GetPremiumPrice";
@@ -518,7 +522,8 @@ class Helper
             $gateway,
             $prices,
             $isPremium,
-            $premiumpricing
+            $premiumpricing,
+            $isTrusteeUsed
         );
     }
 
