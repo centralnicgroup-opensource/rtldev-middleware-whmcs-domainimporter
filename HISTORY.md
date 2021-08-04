@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.2.0...v1.2.1) (2021-08-04)
+
+
+### Bug Fixes
+
+* **add client:** fixed issues with adding clients ([0bad63a](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/0bad63aef9ecfc0a5e6c2c173d126b9b8d50a540))
+
 # [1.2.0](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.1.0...v1.2.0) (2021-08-03)
 
 
