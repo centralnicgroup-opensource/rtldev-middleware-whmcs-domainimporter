@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.2.1...v1.2.2) (2021-08-04)
+
+
+### Bug Fixes
+
+* **welcome email:** fixed bug in subscription while creating customers ([39624a6](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/39624a6961db956a575a8af5733379c29c53bfd2))
+
 ## [1.2.1](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.2.0...v1.2.1) (2021-08-04)
 
 
