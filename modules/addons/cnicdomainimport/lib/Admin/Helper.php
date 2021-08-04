@@ -107,7 +107,9 @@ class Helper
             "Postcode" => "postcode",
             "Country" => "country",
             "Phone" => "phonenumber",
-            "Email" => "email"
+            "Email" => "email",
+            "noemail" => true,
+            "marketingoptin" => true
         ];
         $request = [
             "password2" => $password,
@@ -115,7 +117,9 @@ class Helper
             "language" => "english"
         ];
         foreach ($fmap as $ckey => $dbkey) {
-            $request[$dbkey] = $contact[$ckey];
+            if (!is_null($contact[$ckey])) {
+                $request[$dbkey] = $contact[$ckey];
+            }
         }
         if (empty($registrant["postcode"])) {
             $registrant["postcode"] = "N/A";
@@ -123,17 +127,21 @@ class Helper
         $request["phonenumber"] = preg_replace("/[^0-9 ]/", "", $request["phonenumber"]);//only numbers and spaces allowed
         $request["postcode"] = preg_replace("/[^0-9a-zA-Z ]/", "", $request["postcode"]);
         $request["country"] = strtoupper($request["country"]);
-        $request["tax_id"] = $taxid;
+        if (!empty($taxid)) {
+            $request["tax_id"] = $taxid;
+        }
 
         $r = localAPI("AddClient", $request);
-
-        if ($r["result"] === "success") {
-            return Helper::getClientsDetailsByEmail($request["email"]);
-        }
-        return [
-            "success" => false,
+        $response = [
+            "success" => ($r["result"] === "success"),
             "errormsg" => $r["message"]
         ];
+        if ($response["success"]) {
+            $response["id"] = $r["clientid"];
+        } else {
+            $response["errormsg"] = $r["message"];
+        }
+        return $response;
     }
 
     /**
@@ -219,7 +227,7 @@ class Helper
                 "userid" => $clientdetails["id"],
                 "orderid" => 0,
                 "type" => "Register",
-                "registrationdate" => $domain->registrarData["createdDate"],
+                "registrationdate" => preg_replace("/ .+$/", "", $domain->registrarData["createdDate"]),
                 "domain" => strtolower($domain->getDomain()),
                 "firstpaymentamount" => $pricing["register"], // price plus tax, addons, markup
                 "recurringamount" => $pricing["renew"],// price plus tax, addons, markup
@@ -281,8 +289,10 @@ class Helper
 
         // save additional domain fields to DB
         // returned by GetDomainInformation
-        $addflds = $domain->registrarData["domainfields"];
-        $addflds->saveToDatabase($id);
+        if (isset($domainObj->registrarData["domainfields"])) {
+            $addflds = $domain->registrarData["domainfields"];
+            $addflds->saveToDatabase($id);
+        }
 
         return [
             "success" => true,
@@ -418,7 +428,7 @@ class Helper
 
         // build params
         $params = $reg->getSettings();
-        $params["domain"] = $domainidn;
+        $params["domain"] = $params["domainname"] = $domainidn;
         list($params["sld"], $params["tld"]) = explode(".", $domainidn, 2);
         $params["registrar"] = $registrar;
         $params["status"] = "Active";
@@ -433,7 +443,8 @@ class Helper
                 "msgid" => "domainnotfound"
             ];
         }
-        if (!property_exists($domainObj, 'registrarData')) {
+
+        if (!$domainObj || !property_exists($domainObj, 'registrarData')) {
             return [
                 "success" => false,
                 "msgid" => "registrarnotsupported"
@@ -463,9 +474,16 @@ class Helper
                 ];
             }
             $client = Helper::getClientsDetailsByEmail($registrant["Email"]);
-            if (!$client) {
+            if (!$client["success"]) {
                 $tax = $domainObj->registrarData["registrantTaxId"];
                 $client = Helper::addClient($registrant, $currency, $password, $taxid);
+                if (!$client["success"]) {
+                    return [
+                        "success" => false,
+                        "msgid" => $client["errormsg"]
+                    ];
+                }
+                $client = Helper::getClientsDetailsByEmail($registrant["Email"]);
                 if (!$client["success"]) {
                     return [
                         "success" => false,
