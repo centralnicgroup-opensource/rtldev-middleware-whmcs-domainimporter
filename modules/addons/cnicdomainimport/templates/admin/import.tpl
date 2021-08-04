@@ -23,6 +23,8 @@
 
 <form method="POST" id="backform">
     <input type="hidden" name="gateway" value="{$smarty.request.gateway}" />
+    <input type="hidden" name="noemail" value="{$smarty.request.noemail}" />
+    <input type="hidden" name="marketingoptin" value="{$smarty.request.marketingoptin}" />
     <input type="hidden" name="registrar" value="{$smarty.request.registrar}" />
     <input type="hidden" name="currency" value="{$smarty.request.currency}" />
     <input type="hidden" name="domains" value="{$smarty.request.domains}" />

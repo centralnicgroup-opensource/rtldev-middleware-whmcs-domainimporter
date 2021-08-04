@@ -35,6 +35,8 @@ $_ADDONLANG['label.domain'] = "Domain";
 $_ADDONLANG['label.domains'] = "Domains";
 $_ADDONLANG['label.gateway'] = "Zahlungsweise";
 $_ADDONLANG['label.currency'] = "Währung";
+$_ADDONLANG['label.noemail'] = "Sende Begrüßungsmail";
+$_ADDONLANG['label.marketingoptin'] = "Marketing Emails Abo";
 
 // options
 $_ADDONLANG['option.choose'] = "Bitte auswählen ...";

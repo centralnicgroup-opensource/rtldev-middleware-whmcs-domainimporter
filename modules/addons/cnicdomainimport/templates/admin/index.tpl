@@ -50,6 +50,20 @@
     <fieldset>
         <legend>Otherwise: Auto-Create Clients</legend>
         <div class="form-group">
+            <label for="noemail" class="control-label col-sm-2">{$_lang['label.noemail']}</label>
+            <div class="col-sm-10">
+                <input type="hidden" name="noemail" value="1"/>
+                <input class="form-check-input" type="checkbox" value="0" name="noemail"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="marketingoptin" class="control-label col-sm-2">{$_lang['label.marketingoptin']}</label>
+            <div class="col-sm-10">
+                <input type="hidden" name="marketingoptin" value="0"/>
+                <input class="form-check-input" type="checkbox" value="1" name="marketingoptin"/>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="gateway" class="control-label col-sm-2">{$_lang['label.gateway']}</label>
             <div class="col-sm-10">
                 <select id="gateway" name="gateway" class="form-control">

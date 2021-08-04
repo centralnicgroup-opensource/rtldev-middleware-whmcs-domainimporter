@@ -6,6 +6,8 @@ $(document).ready(() => {
         clientid: form.find('input[name="clientid"]').val(),
         toClientImport: form.find('input[name="toClientImport"]').val(),
         gateway: form.find('input[name="gateway"]').val(),
+        noemail: form.find('input[name="noemail"]').val(),
+        marketingoptin: form.find('input[name="marketingoptin"]').val(),
         currency: form.find('input[name="currency"]').val(),
         registrar: form.find('input[name="registrar"]').val(),
         action: 'importsingle'

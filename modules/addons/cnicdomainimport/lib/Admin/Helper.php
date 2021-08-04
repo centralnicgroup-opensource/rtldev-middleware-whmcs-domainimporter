@@ -94,7 +94,7 @@ class Helper
      *
      * @return array
      */
-    public static function addClient($contact, $currencyid, $password, $taxid = "")
+    public static function addClient($contact, $clientsettings, $taxid)
     {
         $fmap = [
             "First Name" => "firstname",
@@ -111,11 +111,7 @@ class Helper
             "noemail" => true,
             "marketingoptin" => true
         ];
-        $request = [
-            "password2" => $password,
-            "currency" => $currencyid,
-            "language" => "english"
-        ];
+        $request = $clientsettings;
         foreach ($fmap as $ckey => $dbkey) {
             if (!is_null($contact[$ckey])) {
                 $request[$dbkey] = $contact[$ckey];
@@ -370,13 +366,12 @@ class Helper
      * @param string $domainpc punycode variant
      * @param string $registrar registrar id
      * @param string $gateway payment gateway
-     * @param string $currency currency
-     * @param string $password the default password we set for newly created customers
+     * @param string $clientsettings settings to use for auto-creating clients
      * @param array  $directImport (optional, to be downward compatible)
      *
      * @return array where property "success" (boolean) identifies the import result and property "msgid" the translation/language key
      */
-    public static function importDomain($domainidn, $domainpc, $registrar, $gateway, $currency, $password, $directImport = ["toClientImport" => 0])
+    public static function importDomain($domainidn, $domainpc, $registrar, $gateway, $clientsettings, $directImport = ["toClientImport" => 0])
     {
         if (!preg_match("/\.(.*)$/i", $domainidn)) {
             return [
@@ -475,8 +470,11 @@ class Helper
             }
             $client = Helper::getClientsDetailsByEmail($registrant["Email"]);
             if (!$client["success"]) {
-                $tax = $domainObj->registrarData["registrantTaxId"];
-                $client = Helper::addClient($registrant, $currency, $password, $taxid);
+                $tax = "";
+                if (isset($domainObj->registrarData["registrantTaxId"])) {
+                    $tax = $domainObj->registrarData["registrantTaxId"];
+                }
+                $client = Helper::addClient($registrant, $clientsettings, $taxid);
                 if (!$client["success"]) {
                     return [
                         "success" => false,

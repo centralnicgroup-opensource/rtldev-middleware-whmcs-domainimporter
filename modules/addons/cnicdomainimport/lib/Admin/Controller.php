@@ -33,13 +33,12 @@ class Controller
         }
 
         // assign vars to smarty
+        $smarty->assign('noemail', $_REQUEST["noemail"]);
+        $smarty->assign('marketingoptin', $_REQUEST["marketingoptin"]);
         $smarty->assign('gateways', $gateways);
         $smarty->assign('gateway_selected', [ $_REQUEST["gateway"] => " selected" ]);
         $smarty->assign('currencies', $currencies);
         $smarty->assign('currency_selected', [ $_REQUEST["currency"] => " selected" ]);
-        if (!isset($_REQUEST["domain"])) {
-            $_REQUEST["domain"] = "*";
-        }
         return $smarty->fetch('index.tpl');
     }
 
@@ -119,8 +118,13 @@ class Controller
             $_REQUEST["pc"],
             $_REQUEST["registrar"],
             $_REQUEST["gateway"],
-            $_REQUEST["currency"],
-            Helper::generateRandomString(),
+            [
+                "currency" => $_REQUEST["currency"],
+                "noemail" => (bool)$_REQUEST["noemail"],
+                "marketingoptin" => (bool)$_REQUEST["marketingoptin"],
+                "password2" => Helper::generateRandomString(),
+                "language" => "english" // TODO
+            ],
             [
                 "toClientImport" => (int) $_REQUEST["toClientImport"],
                 "clientid" => (int) $_REQUEST["clientid"]
