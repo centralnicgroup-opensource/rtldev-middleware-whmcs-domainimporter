@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.2.2...v1.2.3) (2021-08-05)
+
+
+### Bug Fixes
+
+* **fn check:** remove deprecated function check ([e208f32](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/e208f32c6da8b4b71a3bbc0789d0643baa13b46a))
+
 ## [1.2.2](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.2.1...v1.2.2) (2021-08-04)
 
 

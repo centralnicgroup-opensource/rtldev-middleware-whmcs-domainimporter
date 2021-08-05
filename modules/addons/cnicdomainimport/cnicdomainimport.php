@@ -43,7 +43,7 @@ function cnicdomainimport_config()
         // Default language
         "language" => "english",
         // Version number
-        "version" => "1.2.2",
+        "version" => "1.2.3",
         // fields
         "fields" => []
     ];

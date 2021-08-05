@@ -5,7 +5,7 @@
   "license": "MIT",
   "category": "digitalservices",
   "description": {
-    "name": "CNIC Domain Importer Addon v1.2.2",
+    "name": "CNIC Domain Importer Addon v1.2.3",
     "tagline": "Import your existing domain portfolio to WHMCS",
     "long": "",
     "features": [
