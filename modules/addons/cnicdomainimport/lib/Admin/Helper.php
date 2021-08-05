@@ -409,7 +409,6 @@ class Helper
         $reg->load($registrar);
         $fns = [
             $registrar . "_GetDomainInformation",
-            $registrar . "_CheckAvailability",
             $registrar . "_GetContactDetails"
         ];
         foreach ($fns as $fn) {
