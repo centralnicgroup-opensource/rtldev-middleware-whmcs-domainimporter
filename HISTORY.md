@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.2.3...v1.3.0) (2021-08-12)
+
+
+### Features
+
+* **idnlanguage:** import idnLanguage if provided ([9f2ed01](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/9f2ed01817687aefcc5ec73eb3cce7a5438185b5))
+
 ## [1.2.3](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.2.2...v1.2.3) (2021-08-05)
 
 
