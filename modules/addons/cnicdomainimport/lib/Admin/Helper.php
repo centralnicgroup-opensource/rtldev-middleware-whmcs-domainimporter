@@ -280,7 +280,14 @@ class Helper
                 $extraDetails->value = $registrarCurrencyId; // prefilled above
                 $extraDetails->save();
             }
-            // TODO idnLanguage
+            if (isset($domain->registrarData["idnLanguage"])) {
+                $extraDetails = \WHMCS\Domain\Extra::firstOrNew([
+                    "domain_id" => $id,
+                    "name" => "idnLanguage"
+                ]);
+                $extraDetails->value = $domain->registrarData["idnLanguage"];
+                $extraDetails->save();
+            }
         }
 
         // save additional domain fields to DB
