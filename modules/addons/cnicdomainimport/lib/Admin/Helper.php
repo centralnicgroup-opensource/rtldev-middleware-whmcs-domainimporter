@@ -120,7 +120,9 @@ class Helper
         if (empty($registrant["postcode"])) {
             $registrant["postcode"] = "N/A";
         }
-        $request["phonenumber"] = preg_replace("/[^0-9 ]/", "", $request["phonenumber"]);//only numbers and spaces allowed
+        //only numbers and spaces allowed
+        $request["phonenumber"] = preg_replace("/[^0-9 ]/", "", $request["phonenumber"]);
+        //only numbers and spaces and ascii letters allowed
         $request["postcode"] = preg_replace("/[^0-9a-zA-Z ]/", "", $request["postcode"]);
         $request["country"] = strtoupper($request["country"]);
         if (!empty($taxid)) {

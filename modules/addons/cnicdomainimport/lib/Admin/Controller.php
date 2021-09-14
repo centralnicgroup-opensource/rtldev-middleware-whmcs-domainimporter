@@ -11,7 +11,7 @@ class Controller
      * Index action. Display the Form.
      *
      * @param array $vars Module configuration parameters
-     * @param Smarty $smarty Smarty template instance
+     * @param \Smarty $smarty Smarty template instance
      *
      * @return string html code
      */
@@ -20,8 +20,8 @@ class Controller
         // Load Payment Methods
         $gateways = Helper::getPaymentMethods();
         if (empty($gateways)) {
-            $smarty->assign('error', $vars["_lang"]["nogatewayerror"]);
-            return $smarty->fetch('error.tpl');
+            $smarty->assign("error", $vars["_lang"]["nogatewayerror"]);
+            return $smarty->fetch("error.tpl");
         }
         // Load Currencies
         $currencies = [];
@@ -33,13 +33,13 @@ class Controller
         }
 
         // assign vars to smarty
-        $smarty->assign('noemail', $_REQUEST["noemail"]);
-        $smarty->assign('marketingoptin', $_REQUEST["marketingoptin"]);
-        $smarty->assign('gateways', $gateways);
-        $smarty->assign('gateway_selected', [ $_REQUEST["gateway"] => " selected" ]);
-        $smarty->assign('currencies', $currencies);
-        $smarty->assign('currency_selected', [ $_REQUEST["currency"] => " selected" ]);
-        return $smarty->fetch('index.tpl');
+        $smarty->assign("noemail", $_REQUEST["noemail"]);
+        $smarty->assign("marketingoptin", $_REQUEST["marketingoptin"]);
+        $smarty->assign("gateways", $gateways);
+        $smarty->assign("gateway_selected", [ $_REQUEST["gateway"] => " selected" ]);
+        $smarty->assign("currencies", $currencies);
+        $smarty->assign("currency_selected", [ $_REQUEST["currency"] => " selected" ]);
+        return $smarty->fetch("index.tpl");
     }
 
     /**
@@ -52,33 +52,39 @@ class Controller
      */
     public function getclientdetails($vars, $smarty)
     {
-        header('Cache-Control: no-cache, must-revalidate'); // HTTP/1.1
-        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-        header('Content-type: application/json; charset=utf-8');
+        header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+        header("Content-type: application/json; charset=utf-8");
 
         $json = [
             "success" => false
         ];
 
-        if ($_REQUEST['clientid'] !== "") {
-            $result = localAPI('GetClientsDetails', [
-                'clientid' => $_REQUEST['clientid'],
-                'stats' => false
+        if ($_REQUEST["clientid"] !== "") {
+            $result = localAPI("GetClientsDetails", [
+                "clientid" => $_REQUEST["clientid"],
+                "stats" => false
             ]);
             $json["success"] = ($result["result"] === "success");
             if ($json["success"]) {
-                $json["clientdetails"] = (
-                    $result["client"]["fullname"] . "<br/>" .
-                    $result["client"]["companyname"] . "<br/>" .
-                    $result["client"]["email"] . "<br/>" .
-                    $result["client"]["phonenumberformatted"] . "<br/>" .
-                    $result["client"]["address1"] . "<br/>" .
-                    (empty($result["client"]["address2"]) ? "" : $result["client"]["address2"] . "<br/>") .
-                    $result["client"]["postcode"] . " " . $result["client"]["city"] . "<br/>" .
-                    $result["client"]["state"] . ", " . $result["client"]["country"] . "<br/>"
-                );
+                $json["clientdetails"] = <<<HTML
+                    {$result["client"]["fullname"]}<br/>
+                    {$result["client"]["companyname"]}<br/>
+                    {$result["client"]["email"]}<br/>
+                    {$result["client"]["phonenumberformatted"]}<br/>
+                    {$result["client"]["address1"]}<br/>
+HTML;
+                if (!empty($result["client"]["address2"])) {
+                    $json["clientdetails"] .= <<<HTML
+                        {$result["client"]["address2"]}<br/>
+HTML;
+                }
+                $json["clientdetails"] .= <<<HTML
+                    {$result["client"]["postcode"]} {$result["client"]["city"]}<br/>
+                    {$result["client"]["state"]}, {$result["client"]["country"]}<br/>
+HTML;
             } else {
-                $json['msg'] = $vars['_lang']["error.clientnotfound"];
+                $json["msg"] = $vars["_lang"]["error.clientnotfound"];
             }
         }
 
@@ -96,7 +102,7 @@ class Controller
     public function import($vars, $smarty)
     {
         // import logic done on jscript-side
-        return $smarty->fetch('import.tpl');
+        return $smarty->fetch("import.tpl");
     }
 
     /**
@@ -109,9 +115,9 @@ class Controller
      */
     public function importsingle($vars, $smarty)
     {
-        header('Cache-Control: no-cache, must-revalidate'); // HTTP/1.1
-        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-        header('Content-type: application/json; charset=utf-8');
+        header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+        header("Content-type: application/json; charset=utf-8");
 
         $result = Helper::importDomain(
             $_REQUEST["idn"],
@@ -133,7 +139,7 @@ class Controller
         if ($result["msgid"]) {
             $result["msg"] = $vars["_lang"][$result["msgid"]];
         }
-        //if custom translation does not exist for 'msgid' in the module
+        //if custom translation does not exist for "msgid" in the module
         if (!$result["msg"]) {
             $result["msg"] = \Lang::trans($result["msgid"]);
         }

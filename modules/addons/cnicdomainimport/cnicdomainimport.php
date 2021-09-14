@@ -30,8 +30,14 @@ use WHMCS\Module\Addon\CnicDomainImport\Admin\AdminDispatcher;
  */
 function cnicdomainimport_config()
 {
-    $data = file_get_contents(implode(DIRECTORY_SEPARATOR, [ROOTDIR, "modules", "addons", "cnicdomainimport", "logo.png"]));
-    $src = ($data) ? 'data:image/png;base64,' . base64_encode($data) : '';
+    $imgpath = implode(DIRECTORY_SEPARATOR, [
+        ROOTDIR, "modules", "addons", "cnicdomainimport", "logo.png"
+    ]);
+    $imgdata = file_get_contents($imgpath);
+    $imgsrc = "";
+    if ($imgdata) {
+        $imgsrc = "data:image/png;base64," . base64_encode($imgdata);
+    }
 
     return [
         // Display name for your module
@@ -39,7 +45,11 @@ function cnicdomainimport_config()
         // Description displayed within the admin interface
         "description" => "This module allows to import existing domains.",
         // Module author name
-        "author" => '<a href="https://www.hexonet.net/" target="_blank"><img style="max-width:100px" src="' . $src . '" alt="CentralNic Group PLC" /></a>',
+        "author" => <<<HTML
+            <a href="https://www.hexonet.net/" target="_blank">
+                <img style="max-width:100px" src="$imgsrc" alt="CentralNic Group PLC" />
+            </a>
+    HTML,
         // Default language
         "language" => "english",
         // Version number
@@ -54,26 +64,30 @@ function cnicdomainimport_config()
  *
  * @see AddonModule\Admin\Controller::index()
  *
+ * @param array $vars
  * @return string
  */
 function cnicdomainimport_output($vars)
 {
     $r = "L14oaGV4b25ldHxpc3BhcGl8a2V5c3lzdGVtc3xycnBwcm94eSkkL2k=";
+    $templatePath = implode(DIRECTORY_SEPARATOR, [
+        ROOTDIR, "modules", "addons", "cnicdomainimport", "templates", "admin"
+    ]);
     $smarty = new Smarty();
     $smarty->caching = false;
     $smarty->setCompileDir($GLOBALS['templates_compiledir']);
-    $smarty->setTemplateDir(implode(DIRECTORY_SEPARATOR, [ROOTDIR, "modules", "addons", "cnicdomainimport", "templates", "admin"]));
+    $smarty->setTemplateDir($templatePath);
 
     // load list of registrars - always necessary
     $registrar = new \WHMCS\Module\Registrar();
-    $activeregs = [];
+    $activeRegistrars = [];
     foreach ($registrar->getList() as $reg) {
-        if (preg_match(base64_decode($r), $reg)) {
-            if ($registrar->load($reg)) {
-                if ($registrar->isActivated()) {
-                    $activeregs[$reg] = $registrar->getDisplayName();
-                }
-            }
+        if (
+            preg_match(base64_decode($r), $reg)
+            && $registrar->load($reg)
+            && $registrar->isActivated()
+        ) {
+            $activeRegistrars[$reg] = $registrar->getDisplayName();
         }
     }
 
@@ -82,8 +96,10 @@ function cnicdomainimport_output($vars)
     $aInt->populateStandardAdminSmartyVariables();
     $smarty->assign($aInt->templatevars);
     $smarty->assign($vars);
-    $smarty->assign('registrars', $activeregs);
-    $smarty->assign('registrar_selected', [ $_REQUEST["registrar"] => " selected" ]);
+    $smarty->assign('registrars', $activeRegistrars);
+    $smarty->assign('registrar_selected', [
+        $_REQUEST["registrar"] => " selected"
+    ]);
     //call the dispatcher with action and data
     $dispatcher = new AdminDispatcher();
     echo $dispatcher->dispatch(
