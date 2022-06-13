@@ -7,7 +7,6 @@ namespace WHMCS\Module\Addon\CnicDomainImport\Admin;
  */
 class AdminDispatcher
 {
-
     /**
      * Dispatch request.
      *
