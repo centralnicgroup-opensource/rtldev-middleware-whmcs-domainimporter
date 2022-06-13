@@ -9,8 +9,8 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=12.0.0",
-    "npm": ">=6.13.4"
+    "node": ">=16.15.1",
+    "npm": ">=8.11.1"
   },
   "homepage": "https://github.com/centralnic-reseller/whmcs-domainimporter",
   "repository": "github:centralnic-reseller/whmcs-domainimporter",
@@ -41,8 +41,8 @@
     "application"
   ],
   "devDependencies": {
-    "semantic-release": "^17.4.4",
-    "@hexonet/semantic-release-github-whmcs-config": "^1.4.1",
+    "semantic-release": "^19.0.3",
+    "@hexonet/semantic-release-github-whmcs-config": "^3.0.0",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-zip": "^5.0.2"
