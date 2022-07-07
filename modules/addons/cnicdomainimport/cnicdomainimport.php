@@ -73,6 +73,11 @@ function cnicdomainimport_output($vars)
     $templatePath = implode(DIRECTORY_SEPARATOR, [
         ROOTDIR, "modules", "addons", "cnicdomainimport", "templates", "admin"
     ]);
+    // If any files upload request has been made merge with arguments array so it can be accessible
+    if (isset($_FILES)) {
+        $vars = array_merge($vars, $_FILES);
+    }
+
     $smarty = new Smarty();
     $smarty->caching = false;
     $smarty->setCompileDir($GLOBALS['templates_compiledir']);

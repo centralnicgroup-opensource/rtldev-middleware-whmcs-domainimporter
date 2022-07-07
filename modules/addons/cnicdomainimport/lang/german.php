@@ -37,6 +37,7 @@ $_ADDONLANG['label.gateway'] = "Zahlungsweise";
 $_ADDONLANG['label.currency'] = "Währung";
 $_ADDONLANG['label.noemail'] = "Sende Begrüßungsmail";
 $_ADDONLANG['label.marketingoptin'] = "Marketing Emails Abo";
+$_ADDONLANG['label.sampleimportfile'] = "Die .csv Datei muss diesem Format entsprechen um die Daten korrekt zu importieren (.csv Musterdatei hier downloaden)";
 
 // options
 $_ADDONLANG['option.choose'] = "Bitte auswählen ...";
@@ -46,8 +47,8 @@ $_ADDONLANG['ph.domainfilter'] = "Filter für Domainnamen eingeben";
 $_ADDONLANG['ph.clientid'] = "Kontrollkästchen aktivieren und ID des Kunden angeben (optional).";
 
 // buttons
-$_ADDONLANG['bttn.pulldomainlist'] = "Domains auflisten";
 $_ADDONLANG['bttn.importdomainlist'] = "Importieren";
+$_ADDONLANG['bttn.uploaddomainlist'] = "Datei hochladen (.csv)";
 $_ADDONLANG['bttn.retryimport'] = "Wiederholen";
 $_ADDONLANG['bttn.previewacc'] = "Datenansicht";
 $_ADDONLANG['bttn.back'] = "Zurück";

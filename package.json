@@ -51,8 +51,6 @@
     "gulp-zip": "^5.0.2"
   },
   "scripts": {
-    "phpCompatibility": "./scripts/phpcompatibility.sh",
-    "codeFix": "phpcbf -q --standard=PSR12 --extensions=php --ignore=node_modules,vendor,templates_c .",
-    "codeCheck": "phpcs -q -n --colors --standard=PSR12 --extensions=php --ignore=node_modules,vendor,templates_c ."
+    "codeFix": "phpcbf -q --standard=PSR12 --extensions=php --ignore=node_modules,vendor,templates_c ."
   }
 }
