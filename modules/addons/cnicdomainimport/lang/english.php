@@ -37,6 +37,7 @@ $_ADDONLANG['label.gateway'] = "Payment Method";
 $_ADDONLANG['label.currency'] = "Currency";
 $_ADDONLANG['label.noemail'] = "Send Welcome Email";
 $_ADDONLANG['label.marketingoptin'] = "Marketing Emails Opt In";
+$_ADDONLANG['label.sampleimportfile'] = ".csv file must follow this format to populate data correctly (Click here to download sample .csv file)";
 
 // options
 $_ADDONLANG['option.choose'] = "Please choose ...";
@@ -47,7 +48,7 @@ $_ADDONLANG['ph.clientid'] = "Activate the checkbox and enter the ID of the clie
 
 // buttons
 $_ADDONLANG['bttn.importdomainlist'] = "Start Import";
-$_ADDONLANG['bttn.uploaddomainlist'] = "Upload from File";
+$_ADDONLANG['bttn.uploaddomainlist'] = "Import using a file (.csv)";
 $_ADDONLANG['bttn.retryimport'] = "Retry";
 $_ADDONLANG['bttn.previewacc'] = "Show Data";
 $_ADDONLANG['bttn.back'] = "Back";

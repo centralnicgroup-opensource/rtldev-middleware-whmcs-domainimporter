@@ -36,9 +36,9 @@ class Controller
         $smarty->assign("noemail", $_REQUEST["noemail"]);
         $smarty->assign("marketingoptin", $_REQUEST["marketingoptin"]);
         $smarty->assign("gateways", $gateways);
-        $smarty->assign("gateway_selected", [ $_REQUEST["gateway"] => " selected" ]);
+        $smarty->assign("gateway_selected", [$_REQUEST["gateway"] => " selected"]);
         $smarty->assign("currencies", $currencies);
-        $smarty->assign("currency_selected", [ $_REQUEST["currency"] => " selected" ]);
+        $smarty->assign("currency_selected", [$_REQUEST["currency"] => " selected"]);
         return $smarty->fetch("index.tpl");
     }
 
@@ -103,6 +103,78 @@ HTML;
     {
         // import logic done on jscript-side
         return $smarty->fetch("import.tpl");
+    }
+
+    /**
+     * Import domains using csv files
+     *
+     * @param array $vars
+     * @param Smarty $smarty Smarty template instance
+     *
+     * @return string html code
+     */
+    public function importcsv($vars, $smarty)
+    {
+        header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+        header("Content-type: application/json; charset=utf-8");
+
+        $file = $vars['file'];
+
+        $json = [
+            'success' => true
+        ];
+        $output = [];
+        // Validation
+        if (!empty($file)) {
+            // Get the file extension
+            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+            // File Type Validation
+            if (empty($extension) || $extension != 'csv') {
+                $json['msg'] = 'Invalid file, only .csv file type is allowed!';
+                $json['success'] = false;
+            }
+
+            // Open the file in read mode
+            $fileHandle = fopen($file['tmp_name'], 'r');
+
+            if (!$fileHandle) {
+                $json['msg'] = 'Uploaded file is invalid, please try again!';
+                $json['success'] = false;
+            }
+
+
+            //Loop through the CSV rows.
+            while (($row = fgetcsv($fileHandle, 0, ",")) !== false && $json['success'] !== false) {
+                if (count($row) == 1 && empty($row[0])) {
+                    //Blank line detected.
+                    continue;
+                }
+                if (count($row) > 1) {
+                    break;
+                }
+                if (is_array($row)) {
+                    foreach ($row as $rowChild) {
+                        $domain = trim(trim($rowChild), "\xEF\xBB\xBF");
+                        $output[] = ['domain' => utf8_encode($domain)];
+                    }
+                } else {
+                    $domain = trim(trim($row), "\xEF\xBB\xBF");
+                    $output[] = ['domain' => utf8_encode($domain)];
+                }
+            }
+        } // End if empty file
+
+        if ((empty($output) || count($output) <= 0) && $json['success']) {
+            $json['msg'] = 'File is empty or invalid!';
+            $json['success'] = false;
+        }
+
+        if ($json['success'] !== false) {
+            $json['domainlist'] = $output;
+        }
+        die(json_encode($json));
     }
 
     /**
