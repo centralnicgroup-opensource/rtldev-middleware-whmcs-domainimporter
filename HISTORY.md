@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.3.0...v1.4.0) (2022-07-08)
+
+
+### Features
+
+* **.csv import:** support domain list upload by file ([5fb4f1c](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/5fb4f1ce287c7dfd700fd6d7e657f82ac51ed006))
+
 # [1.3.0](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.2.3...v1.3.0) (2021-08-12)
 
 
