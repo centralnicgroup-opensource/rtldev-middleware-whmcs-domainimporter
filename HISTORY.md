@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.4.0...v1.4.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* **gulp:** cleanup package-lock.json clean ([aad123b](https://github.com/centralnic-reseller/whmcs-domainimporter/commit/aad123bbaf193fd303e3d815d26405d649077eb7))
+
 # [1.4.0](https://github.com/centralnic-reseller/whmcs-domainimporter/compare/v1.3.0...v1.4.0) (2022-07-08)
 
 
