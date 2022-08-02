@@ -28,7 +28,7 @@
     "hexonet",
     "ispapi",
     "rrpproxy",
-    "centralnic",
+    "CentralNic Reseller",
     "domain",
     "isp",
     "ssl",
@@ -40,9 +40,9 @@
     "registration",
     "application"
   ],
-  "overrides":{
-		"glob-parent":"^6.0.2"
-	},
+  "overrides": {
+    "glob-parent": "^6.0.2"
+  },
   "devDependencies": {
     "semantic-release": "^19.0.3",
     "@hexonet/semantic-release-github-whmcs-config": "^3.0.1",
