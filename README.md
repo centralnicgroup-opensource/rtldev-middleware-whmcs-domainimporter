@@ -7,6 +7,8 @@
 
 This Repository covers the WHMCS Domain Import Module of CentralNic Group PLC.
 
+> NOTE: This repository has been deprecated in favor of the [CentralNic Software Bundle for WHMCS](https://github.com/centralnicgroup-opensource/rtldev-middleware-whmcs). Please follow our [Installation / Upgrade Guide](https://centralnic-reseller.github.io/centralnic-reseller/docs/hexonet/whmcs/whmcs-ispapi-registrar#installation--upgrade). Compatibility: WHMCS 7.8++, PHP 7.2++.
+
 ## Resources ##
 
 Download the ZIP archive including the latest release version [here](https://github.com/centralnic-reseller/whmcs-domainimporter/raw/master/whmcs-domainimporter-latest.zip).
